@@ -32,54 +32,54 @@ import {
 
 import { AppOpenAd, InterstitialAd, RewardedAd, BannerAd, TestIds, BannerAdSize, AdEventType, RewardedAdEventType } from 'react-native-google-mobile-ads';
 
-// const adUnitId =  TestIds.INTERSTITIAL;
+const adUnitId =  'ca-app-pub-9152919921144751/7643014312';
 
-// const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-//   requestNonPersonalizedAdsOnly: true,
-//   keywords: ['fashion', 'clothing'],
-// });
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+  // keywords: ['fashion', 'clothing'],
+});
 
-const adUnitId =  TestIds.REWARDED;
+// const adUnitId =  TestIds.REWARDED;
 
-  const rewarded = RewardedAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true,
-    keywords: ['fashion', 'clothing'],
-  });
+//   const rewarded = RewardedAd.createForAdRequest(adUnitId, {
+//     requestNonPersonalizedAdsOnly: true,
+//     keywords: ['fashion', 'clothing'],
+//   });
 
 
 const Section = ({children, title}) => {
 
-  // useEffect(() => {
-  //   const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-  //       interstitial.show();
-  //   });
-  //   // Start loading the interstitial straight away
-  //   interstitial.load();
-  //   // Unsubscribe from events on unmount
-  //   return unsubscribe;
-  // }, []);
-
   useEffect(() => {
-    console.log('Called')
-    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
-        rewarded.show();
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+        interstitial.show();
     });
-    const unsubscribeEarned = rewarded.addAdEventListener(
-      RewardedAdEventType.EARNED_REWARD,
-      reward => {
-        console.log('User earned reward of ', reward);
-      },
-    );
-
-    // Start loading the rewarded ad straight away
-    rewarded.load();
-
+    // Start loading the interstitial straight away
+    interstitial.load();
     // Unsubscribe from events on unmount
-    return () => {
-      unsubscribeLoaded();
-      unsubscribeEarned();
-    };
+    return unsubscribe;
   }, []);
+
+  // useEffect(() => {
+  //   console.log('Called')
+  //   const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+  //       rewarded.show();
+  //   });
+  //   const unsubscribeEarned = rewarded.addAdEventListener(
+  //     RewardedAdEventType.EARNED_REWARD,
+  //     reward => {
+  //       console.log('User earned reward of ', reward);
+  //     },
+  //   );
+
+  //   // Start loading the rewarded ad straight away
+  //   rewarded.load();
+
+  //   // Unsubscribe from events on unmount
+  //   return () => {
+  //     unsubscribeLoaded();
+  //     unsubscribeEarned();
+  //   };
+  // }, []);
 
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -105,10 +105,11 @@ const Section = ({children, title}) => {
 
     <BannerAd 
       size={BannerAdSize.BANNER} 
-      unitId={"ca-app-pub-9152919921144751/4222466449"} 
-      requestOptions={{
-        requestNonPersonalizedAdsOnly:true,
-      }}
+      unitId={TestIds.BANNER} 
+      // unitId={"ca-app-pub-9152919921144751/4080981743"} 
+      // requestOptions={{
+      //   requestNonPersonalizedAdsOnly:true,
+      // }}
       />
 
     </View>

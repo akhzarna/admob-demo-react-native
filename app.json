@@ -1,8 +1,9 @@
 {
   "name": "admob",
   "displayName": "admob",
+
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-9152919921144751~8976099674",
+    "android_app_id": "ca-app-pub-9152919921144751~4517462999",
     "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
   }
 }
